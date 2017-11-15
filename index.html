@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todos Application</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 offset-md-2">
+				<div class="input-group mt-20 mb-20">
+			      	<input type="text" class="form-control" id="input-description" placeholder="Search for..." aria-label="Search for...">
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" id="addTodo">Add <i class="fa fa-plus"></i></button>
+			      	</span>
+			    </div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Action</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody rel="js-todos-list">
+						
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
