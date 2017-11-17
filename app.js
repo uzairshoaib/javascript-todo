@@ -37,6 +37,11 @@ function setupApp() {
 			alert('Description must be equals to or greater than '+Helpers.minDescriptionLength+' characters');
 		}
 	}
+
+	function deleteTodo(projectId) {
+		todos.splice(projectId,1);
+		deleteTodoFromList(projectId);
+	}
 }
 function setupUI(argument) {
 	var todosList = document.querySelector('[rel*=js-todos-list]');
@@ -50,17 +55,48 @@ function setupUI(argument) {
 
 	/********** *********/
 	function initUI() {
+		// set add todo handlers
 		document.getElementById('addTodo').addEventListener('click', addTodoHandler);
+
+		// add Todo Handler
 		function addTodoHandler() {
-			var description = document.getElementById('input-description').value;
-			App.addTodo(description);
+			var description = document.getElementById('input-description');
+			App.addTodo(description.value);
+			description.value = '';
+			// set delete todo handlers
+			var deleteTodos = document.querySelectorAll('.delete-todo');
+			for (var i = 0; i < deleteTodos.length; i++) {
+				deleteTodos[i].addEventListener('click', deleteTodoHandler);
+			}
+			// set complete todo handlers
+			var completeTodos = document.querySelectorAll('.complete-todo');
+			for (var i = 0; i < completeTodos.length; i++) {
+				completeTodos[i].addEventListener('click', completeTodoHandler);
+			}
 		}
+
+		// deleteTodo Handler
+		function deleteTodoHandler() {
+			var todoId = this.getAttribute('data-todoid');
+			App.deleteTodo(todoId);
+		}
+		// completeTodo Handler
+		function completeTodoHandler() {
+			var todoId = this.getAttribute('data-todoid');
+			App.deleteTodo(todoId);
+		}
+
 	}
 
 	function addTodoToList(todoId, description) {
 		var todoRow = document.createElement('tr');
-		todoRow.innerHTML = '<td rel="todo-desc">'+description+'</td><td><button data-todoid="'+todoId+'" class="btn btn-default" rel="action-on-todo"><span class="fa fa-trash"></span></button><button data-todoid="'+todoId+'" class="btn btn-default" rel="action-on-todo"><span class="fa fa-pencil"></span></button></td><td><button data-todoid="'+todoId+'" class="btn btn-default" rel="action-on-todo"><span class="fa fa-"></span></button></td>';
+		todoRow.id = 'todo-'+todoId;
+		todoRow.innerHTML = '<td><button data-todoid="'+todoId+'" class="btn btn-default complete-todo" rel="action-on-todo"><span class="fa fa-check"></span></button></td><td rel="todo-desc">'+description+'</td><td><button data-todoid="'+todoId+'" class="btn btn-default delete-todo" rel="action-on-todo" id="delete-todo"><span class="fa fa-trash"></span></button></td>';
 		todosList.append(todoRow);
+	}
+
+	function deleteTodoFromList(todoId) {
+		document.getElementById('todo-'+todoId).remove();
 	}
 }
 

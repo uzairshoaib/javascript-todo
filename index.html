@@ -20,15 +20,20 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
+							<th>&nbsp;</th>
 							<th>Description</th>
 							<th>Action</th>
-							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody rel="js-todos-list">
 						
 					</tbody>
-				</table>	
+				</table>
+				<ul class="list-inline">
+					<li class="list-inline-item"><button class="btn btn-default" rel="filter-todo" data-filter="active">Active</button></li>
+					<li class="list-inline-item"><button class="btn btn-success" rel="filter-todo" data-filter="completed">Completed</button></li>
+					<li class="list-inline-item"><button class="btn btn-primary" rel="filter-todo" data-filter="all">All</button></li>
+				</ul>	
 			</div>
 		</div>
 	</div>
