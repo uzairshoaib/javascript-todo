@@ -35,3 +35,8 @@
 .ml-20{
 	margin-left: 20px;
 }
+
+/* */
+.todo-completed{
+	text-decoration: line-through;
+}
